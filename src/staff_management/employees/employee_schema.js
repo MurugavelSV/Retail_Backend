@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const staffSchema = new mongoose.Schema({
+const employeeSchema = new mongoose.Schema({
     personalInformation: {
         name: String,
         address: String,
@@ -12,12 +12,22 @@ const staffSchema = new mongoose.Schema({
     },
 
     employmentInformation: {
+        employeeId: String,
         startDate: Date,
+        endDate: {
+            type: Date,
+            default: Date.now()
+        },
         position: String,
         department: String,
         employmentStatus: String,
         workLocation: String,
-        reportingManager: String, // Later change to Types.ObjectId
+        reportingManager: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Managers'
+        }, // Later change to Types.ObjectId
         salary: Number
     }
-})
+});
+
+export const Employees = mongoose.model('Employees', employeeSchema);

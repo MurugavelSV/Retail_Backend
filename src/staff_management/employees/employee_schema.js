@@ -13,10 +13,13 @@ const employeeSchema = new mongoose.Schema({
 
     employmentInformation: {
         employeeId: String,
-        startDate: Date,
-        endDate: {
+        startDate: {
             type: Date,
             default: Date.now()
+        },
+        endDate: {
+            type: Date,
+            default: null
         },
         position: String,
         department: String,

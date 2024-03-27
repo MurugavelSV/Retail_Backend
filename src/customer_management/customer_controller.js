@@ -38,7 +38,7 @@ export default class CustomerController{
             return res.status(200).send("OK");
         }catch(err){
             console.log(err.message);
-            return res.status(500).send("Internal server error");
+            return res.status(500).send(err.message);
         }
     }
 

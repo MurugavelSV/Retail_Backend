@@ -1,6 +1,7 @@
 import express from "express";
 import 'dotenv/config';
 import cors from "cors";
+import session from "express-session";
 import connectDb from "./src/config/mongooseConnect.js";
 import customerRouter from "./src/customer_management/customer_route.js";
 
@@ -9,6 +10,13 @@ const app = express();
 app.use(express.urlencoded({extended: true}));
 
 app.use(cors());
+
+app.use(session({
+    secret: process.env.Session_Secret,
+    resave: false,
+    saveUninitialized: true
+}));
+
 
 app.get('/', (req, res) => {
     return res.status(200).send("Welcome to Express server");

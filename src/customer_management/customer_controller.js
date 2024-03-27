@@ -45,6 +45,7 @@ export default class CustomerController{
     async signUp(req, res){
         try{
             console.log(req.session.userInfo);
+            console.log(req.session.otp);
             const{userName, email, mobileNumber, password} = req.session.userInfo;
             const {otp} = req.body;
             console.log(otp)
